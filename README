@@ -1,0 +1,25 @@
+Enable i2c and install python libs for OPI zero
+
+1) armbian-config   and set i2c-0 or i2c-1 (or both)
+and reboot OPI
+
+2) check the existence of /dev/i2c-0 or /dev/i2c-1
+
+3) apt install gpiod  
+    apt install python3-libgpiod
+
+NOTE: Access to GPIOs is possible only via root (a solution might exists but I did not spend time on it)
+
+As root:
+
+4) edit ~/.bashrc and add
+export PYTHONPATH=/usr/lib/python3/dist-packages
+
+5) Create virtual env and activate
+python -m venv ~/adsvenv/
+source ~/adsvenv/bin/activate
+
+6) Install packages 
+pip3 install setuptools_scm
+pip3 install adafruit-circuitpython-ads1x15
+pip3 install adafruit-blinka
