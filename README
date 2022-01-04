@@ -23,3 +23,45 @@ source ~/adsvenv/bin/activate
 pip3 install setuptools_scm
 pip3 install adafruit-circuitpython-ads1x15
 pip3 install adafruit-blinka
+
+
+Access to configuration
+-----------------------
+
+import board
+import busio
+import adafruit_ads1x15.ads1115 as ADS
+i2c = busio.I2C(board.SCL, board.SDA)
+adc = ADS.ADS1115(i2c)
+
+adc._read_register(0) - data register
+adc._read_register(1) - configuration register
+
+Gain
+----
+9:11 bit
+
+e.g. output of config register
+11000111 10100011 -> 011 (9:11 bit)
+
+000 : FSR= ±6.144V
+001 : FSR= ±4.096V            (gain = 1)
+010 : FSR= ±2.048V (default)  (gain = 2)
+011 : FSR= ±1.024V            (gain = 4)
+100 : FSR= ±0.512V            (gain = 8)
+101 : FSR= ±0.256V
+110 : FSR= ±0.256V
+111 : FSR= ±0.256V
+
+Configuration:
+ set gain
+   adc.gain = 4
+
+Mode
+
+set mode
+
+
+
+
+

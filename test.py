@@ -11,11 +11,13 @@ i2c = busio.I2C(board.SCL, board.SDA)
 
 # Create an ADS1115 ADC (16-bit) instance.
 adc = ADS.ADS1115(i2c)
-adc.gain = 1
+adc.gain = 4
 print(adc.gain)
 print(adc.gains)
 print(adc.data_rate)
+
 print(adc._read_register(0))
+print(adc._read_register(1))
 
 # Choose a gain of 1 for reading voltages from 0 to 4.09V.
 # Or pick a different gain to change the range of voltages that are read:
